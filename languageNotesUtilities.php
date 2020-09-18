@@ -81,55 +81,24 @@
 		return (substr($text, strlen($text) - strlen($end)) == $end);
 	}
 	
-	$insidePreTag = false;
-	$insideNomnomlTag = false;
-	$insidePinkerTag = false;
-	function DisplayLine($line, $syntaxLanguage)
+	$insideBigTag = false;
+	function DisplayLine($line)
 	{
-		global $insidePreTag;
-		global $insideNomnomlTag;
-		global $insidePinkerTag;
+		global $insideBigTag;
 
-		if(IsCodeTag($line))
+		if(IsBigTag($line))
 		{
-			$insidePreTag = (!$insidePreTag);
-			echo PrepCodeTag($line, $syntaxLanguage);
+			$insideBigTag = (!$insideBigTag);
+			echo $line;
 			return;
 		}
 
-		if(IsNomnomlTag($line))
-		{
-			$insideNomnomlTag = (!$insideNomnomlTag);
-			echo PrepNomnomlTag($line);
-			return;
-		}
-		if($insideNomnomlTag)
-		{
-			echo $line."\n";
-			return;
-		}
-		
-		if(IsPinkerTag($line))
-		{
-			$insidePinkerTag = (!$insidePinkerTag);
-			echo PrepPinkerTag($line);
-			return;
-		}
-		if($insidePinkerTag)
-		{
-			echo $line."\n";
-			return;
-		}
-		
 		$line = HTMLEncodeSpecialCharacters($line);
 		$line = CheckForInlineComments($line);
 		$line = CheckForMultilineComments($line);
 		$line = CheckForTabs($line);
 		echo $line;
-		if(!$insidePreTag)
-		{
-			echo "<br/>";
-		}
+		echo "<br/>";
 	}
 	
 	function CheckForInlineComments($line)
@@ -175,77 +144,19 @@
 		return preg_replace("/\t/","&nbsp;&nbsp;&nbsp;&nbsp;", $line);
 	}
 	
-	function IsCodeTag($text)
+	function IsBigTag($text)
 	{
-		return (IsOpenCodeTag($text) || IsCloseCodeTag($text));
+		return (IsOpenBigTag($text) || IsCloseBigTag($text));
 	}
 	
-	function IsOpenCodeTag($text)
+	function IsOpenBigTag($text)
 	{
-		return (preg_match("/^(\t|\s)*<code.*>\s*$/", $text) == 1);
+		return (preg_match("/^(\t|\s)*<big.*>\s*$/", $text) == 1);
 	}
 	
-	function IsCloseCodeTag($text)
+	function IsCloseBigTag($text)
 	{
-		return (preg_match("/^(\t|\s)*<\/code.*>\s*$/", $text) == 1);
+		return (preg_match("/^(\t|\s)*<\/big.*>\s*$/", $text) == 1);
 	}
 	
-	function IsNomnomlTag($text)
-	{
-		return (preg_match("/^(\t|\s)*<\/?nomnoml.*>\s*$/", $text) == 1);
-	}
-	
-	function IsPinkerTag($text)
-	{
-		return (preg_match("/^(\t|\s)*<\/?pinker.*>\s*$/", $text) == 1);
-	}
-	
-	function PrepCodeTag($line, $syntaxLanguage)
-	{
-		if(IsOpenCodeTag($line))
-		{
-			$line = preg_replace("/(<code.*>)/","<pre>$1", $line);
-			if(preg_match("/lang=\".*\"/", $line) == 1)
-			{
-				//convert <code lang="markup"> to <code class="language-markup">
-				$line = preg_replace("/(.*)<code lang=\"(.*?)\">/","$1<code class=\"language-$2\">", $line);
-			}
-			else
-			{
-				$line = preg_replace("/(.*)<code.*>/","$1<code class=\"language-$syntaxLanguage\">", $line);
-			}
-		}
-		else if(IsCloseCodeTag($line))
-		{
-			$line = preg_replace("/(<\/code>)/","$1</pre>", $line);
-		}
-		
-		return $line;
-	}
-	
-	$nomnomlCount = 0;
-	function PrepNomnomlTag($line)
-	{
-		global $nomnomlCount;
-		$line = preg_replace("/(<nomnoml.*>)/","<div class='nomnoml'><canvas id='target-canvas-".$nomnomlCount."'></canvas></div><script>var source = `", $line);
-		$line = preg_replace("/(<\/nomnoml>)/","`;nomnoml.draw(document.getElementById('target-canvas-".$nomnomlCount."'), source);</script>", $line);
-		if(strpos($line, 'nomnoml.draw') !== false)
-		{
-			$nomnomlCount++;
-		}
-		return $line;
-	}
-	
-	$pinkerCount = 0;
-	function PrepPinkerTag($line)
-	{
-		global $pinkerCount;
-		$line = preg_replace("/(<pinker.*>)/","<div class='pinker'><canvas id='pinker-canvas-".$pinkerCount."'></canvas></div><script>var source = `", $line);
-		$line = preg_replace("/(<\/pinker>)/","`;pinker.draw(document.getElementById('pinker-canvas-".$pinkerCount."'), source);</script>", $line);
-		if(strpos($line, 'pinker.draw') !== false)
-		{
-			$pinkerCount++;
-		}
-		return $line;
-	}
 ?>

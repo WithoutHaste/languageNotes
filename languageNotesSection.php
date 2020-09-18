@@ -132,45 +132,6 @@
 	<title>Without Haste: <?php echo $sectionHeader; ?> Notes</title>
 	<meta name="description" content="Programming Notes: <?php echo $sectionHeader; ?>"/>
 	<script src="../javascript/jquery-1.8.2.min.js"></script>
-	
-	<!-- for syntax highlighting -->
-	<link href="../javascript/syntaxPrism/prism.css" rel="stylesheet" />
-	<script src="../javascript/syntaxPrism/prism.js"></script>
-	
-	<!-- for diagrams -->
-	<!-- https://github.com/skanaar/nomnoml and http://www.nomnoml.com/ -->
-	<!-- biggest limitation of tool, as of June 2019, is that you can arrow across scopes -->
-	<!-- according to https://github.com/skanaar/nomnoml/issues/6 and https://github.com/skanaar/nomnoml/issues/69 -->
-	<!-- this is because of a limitation in the underlying graphing library and pull requests are welcome -->
-	<?php
-		if($syntaxLanguage == "nomnoml")
-		{
-			echo "<script src='../javascript/nomnoml/underscore.min.js'></script>\n";
-//			echo "<script src='../javascript/lodash/lodash.js'></script>\n";
-			echo "<script src='../javascript/dagre/dagre.min.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/skanaar.canvas.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/skanaar.svg.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/skanaar.util.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/skanaar.vector.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.jison-parser.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.parser.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.visuals.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.layouter.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.renderer.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.js'></script>\n";
-			echo "<script src='../javascript/nomnoml/nomnoml.jison.js'></script>\n";
-			echo "<link href='../javascript/nomnoml/nomnoml.css' rel='stylesheet' />";
-		}
-	?>
-	
-	<!-- for diagrams -->
-	<?php
-		if($syntaxLanguage == "pinker")
-		{
-			echo "<script src='../javascript/pinker/Pinker.js'></script>\n";
-		}
-	?>
-	
 	<link rel="stylesheet" type="text/css" href="languageNotesSection.css" />
 	<script src="languageNotesSection.js"></script>
 </head>
@@ -260,7 +221,7 @@
 					DisplayHyperlink($line);
 					continue;
 				}
-				DisplayLine($line, $syntaxLanguage);
+				DisplayLine($line);
 			}
 			fclose($file);
 			if($inSubHeaderDiv)

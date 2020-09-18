@@ -1,0 +1,43 @@
+##Alphabet
+
+Letters have Final, Medial, Initial, and Isolated forms. 
+
+#Hijā’ī Order
+
+Letters are grouped by similarity of shape.
+(x marks are for letters that don't have that form)
+
+in progress https://en.wikipedia.org/wiki/Arabic_script_in_Unicode
+
+todo do not html encode inside BIG tag
+
+<big>
+ﺎ x x ا Alif
+ﺐ ﺒ ﺑ ب Ba \0xFE92 0xFE92 &#FE92;
+ت Ta
+ث Tha
+ج Jeem
+ح Hha
+خ Kha
+د Dal
+ذ Thal
+ر Ra
+ز Zay
+س Seen
+ش Sheen
+ص Saad
+ض Daad
+ط Toh
+ظ Thoh
+ع Ayn
+غ Ghayn
+ف Fa
+ق Qaf
+ك Kaf
+ل Lam
+م Meem
+ن Noon
+ه Ha
+و Wow
+ي Ya
+</big>

@@ -107,21 +107,11 @@ div.inset:hover {
 	border-left: 2px solid #d16c00; /* rusty orange */
 }
 
-pre[class*="language-"] {
-	padding-top: 0em;
-}
-code[class*="language-"] {
+big {
 	line-height: 1.2;
-}
-
-div.nomnoml {
-	margin: 0.25em;
-	background-color: #fdf6e3;
+	font-size: 48px;
 }
 
 div.highlight-text, a.highlight {
 	color: #d16c00; /* rusty orange */
 }
-/*div.highlight-section {
-	border-left: 2px solid #d16c00; /* rusty orange */
-}*/
