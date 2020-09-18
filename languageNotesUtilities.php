@@ -81,62 +81,30 @@
 		return (substr($text, strlen($text) - strlen($end)) == $end);
 	}
 	
-	$insideBigTag = false;
+	$insideHtmlTag = false;
 	function DisplayLine($line)
 	{
-		global $insideBigTag;
+		global $insideHtmlTag;
 
-		if(IsBigTag($line))
+		if(IsOpenHtmlTag($line))
 		{
-			$insideBigTag = (!$insideBigTag);
-			echo $line;
+			$insideHtmlTag = true;
 			return;
 		}
-
-		$line = HTMLEncodeSpecialCharacters($line);
-		$line = CheckForInlineComments($line);
-		$line = CheckForMultilineComments($line);
+		else if(IsCloseHtmlTag($line))
+		{
+			$insideHtmlTag = false;
+			return;
+		}
+		
 		$line = CheckForTabs($line);
+		if(!$insideHtmlTag) 
+		{
+			$line = HTMLEncodeSpecialCharacters($line);
+		}
+
 		echo $line;
 		echo "<br/>";
-	}
-	
-	function CheckForInlineComments($line)
-	{
-		$commentsStart = strpos($line, "--");
-		if($commentsStart != FALSE)
-		{
-			$line = substr_replace($line, "<span class='comments'>", $commentsStart, 0);
-			$line = $line."</span>";
-		}
-		$commentsStart = strpos($line, "//");
-		if($commentsStart != FALSE)
-		{
-			$line = substr_replace($line, "<span class='comments'>", $commentsStart, 0);
-			$line = $line."</span>";
-		}
-		return $line;
-	}
-	
-	function CheckForMultilineComments($line)
-	{
-		$commentsStart = strpos($line, "/*");
-		$commentsEnd = strrpos($line, "*/");
-		if($commentsStart == FALSE && $commentsEnd == FALSE)
-		{
-			return $line;
-		}
-		if($commentsStart == FALSE)
-		{
-			$commentsStart = 0;
-		}
-		if($commentsEnd == FALSE)
-		{
-			$commentsEnd = strlen($line)-2;
-		}	
-		$line = substr_replace($line, "</span>", $commentsEnd+2, 0);
-		$line = substr_replace($line, "<span class='comments'>", $commentsStart, 0);
-		return $line;
 	}
 	
 	function CheckForTabs($line)
@@ -144,19 +112,19 @@
 		return preg_replace("/\t/","&nbsp;&nbsp;&nbsp;&nbsp;", $line);
 	}
 	
-	function IsBigTag($text)
+	function IsHtmlTag($text)
 	{
-		return (IsOpenBigTag($text) || IsCloseBigTag($text));
+		return (IsOpenHtmlTag($text) || IsCloseHtmlTag($text));
 	}
 	
-	function IsOpenBigTag($text)
+	function IsOpenHtmlTag($text)
 	{
-		return (preg_match("/^(\t|\s)*<big.*>\s*$/", $text) == 1);
+		return (preg_match("/^(\t|\s)*<html.*>\s*$/", $text) == 1);
 	}
 	
-	function IsCloseBigTag($text)
+	function IsCloseHtmlTag($text)
 	{
-		return (preg_match("/^(\t|\s)*<\/big.*>\s*$/", $text) == 1);
+		return (preg_match("/^(\t|\s)*<\/html.*>\s*$/", $text) == 1);
 	}
 	
 ?>

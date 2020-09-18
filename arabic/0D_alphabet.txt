@@ -1,43 +1,38 @@
 ##Alphabet
 
-Letters have Final, Medial, Initial, and Isolated forms. 
+Letters have Isolated and Final, Medial, Initial forms. 
 
 #Hijā’ī Order
 
 Letters are grouped by similarity of shape.
-(x marks are for letters that don't have that form)
 
-in progress https://en.wikipedia.org/wiki/Arabic_script_in_Unicode
-
-todo do not html encode inside BIG tag
-
-<big>
-ﺎ x x ا Alif
-ﺐ ﺒ ﺑ ب Ba \0xFE92 0xFE92 &#FE92;
-ت Ta
-ث Tha
-ج Jeem
-ح Hha
-خ Kha
-د Dal
-ذ Thal
-ر Ra
-ز Zay
-س Seen
-ش Sheen
-ص Saad
-ض Daad
-ط Toh
-ظ Thoh
-ع Ayn
-غ Ghayn
-ف Fa
-ق Qaf
-ك Kaf
-ل Lam
-م Meem
-ن Noon
-ه Ha
-و Wow
-ي Ya
-</big>
+<html>
+<big>ﺎ ا</big> Alif
+<big>ﺑﺒﺐ ﺐ</big> Ba
+<big>ﺗﺘﺖ ﺕ</big> Ta
+<big>ﺛﺜﺚ ﺙ</big> Tha
+<big>ﺟﺠﺞ ﺝ</big> Jeem
+<big>ﺣﺤﺢ ﺡ</big> Hha (breathy ha)
+<big>ﺧﺨﺦ ﺥ</big> Kha (phlegmy gha or kha)
+<big>ﺪ ﺩ</big> Dal
+<big>ﺬ ﺫ</big> Thal
+<big>ﺮ ﺭ</big> Ra
+<big>ﺰ ﺯ</big> Zay
+<big>ﺳﺴﺲ ﺱ</big> Seen
+<big>ﺷﺸﺶ ﺵ</big> Sheen
+<big>ﺻﺼﺺ ﺹ</big> Saad (emphatic s)
+<big>ﺿﻀﺾ ﺽ</big> Daad (emphatic db)
+<big>ﻃﻄﻂ ﻁ</big> Toh
+<big>ﻇﻈﻆ ﻅ</big> Thoh
+<big>ﻋﻌﻊ ﻉ</big> Ayn
+<big>ﻏﻐﻎ ﻍ</big> Ghayn (a sound I can't describe yet)
+<big>ﻓﻔﻒ ﻑ</big> Fa
+<big>ﻗﻘﻖ ﻕ</big> Qaf (koff)
+<big>ﻛﻜﻚ ﻙ</big> Kaf
+<big>ﻟﻠﻞ ﻝ</big> Lam
+<big>ﻣﻤﻢ ﻡ</big> Meem
+<big>ﻧﻨﻦ ﻥ</big> Noon
+<big>ﻫﻬﻪ ﻩ</big> Ha (ha from chest)
+<big>ﻮ ﻭ</big> Wow
+<big>ﻳﻴﻲ ﻱ</big> Ya
+</html>
