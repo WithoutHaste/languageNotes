@@ -1,0 +1,10 @@
+##Pronouns
+
+<html>
+<big>أَنا</big> I
+ana
+
+
+<big>اِسمي</big> my name
+ismi
+</html>
