@@ -1,0 +1,56 @@
+body {
+	width: 800px;
+	font-family: verdana, arial black, arial;
+	background-color: #E7E4D3 /*satin linen*/
+}
+a {
+	color: #CDB99C; /*rodeo dust orange*/
+	text-decoration: none;
+}
+a:hover {
+	color: #B29266;
+	text-decoration: none;
+}
+h3 {
+	margin-top: 0px;
+}
+#pageHeader {
+	font-size: 40;
+	font-weight: bold;
+	padding-top: 0.5em;
+	padding-left: 1em;
+	padding-bottom: 0.5em;
+	border-radius: 10px;
+}
+
+div.panel {
+	margin-top: 15px;
+	border-radius: 10px;
+	padding: 0.5em;
+}
+.dark {
+	background-color: #206BA4; /*matisse blue*/
+	color: #BBD9EE; /*spindle blue*/
+}
+.medium {
+	background-color: #BBD9EE; /*spindle blue*/
+	color: #206BA4; /*matisse blue*/
+}
+.light {
+	background-color: #F1EFE2; /*white rock yellow*/ 
+	color: #206BA4; /*matisse blue*/
+	border: 1px solid #CDB99C; /*rodeo dust orange*/
+}
+
+div.inline {
+	display: inline-block;
+	margin: 0.5em;
+	padding: 0.25em;
+	border: 1px solid #CDB99C; /*rodeo dust orange*/
+	border-radius: 6px;
+	white-space: nowrap;
+}
+
+arabic {
+	font-size: 48px;
+}
